@@ -6,6 +6,13 @@ body {
   color: rgb(68, 64, 60);
 }
 
+.container {
+  position: relative;
+  max-width: 1920px;
+  width: 100%;
+  padding: 0 15px;
+}
+
 .text-yellow {
   color: rgb(234 179 8);
 }
@@ -32,6 +39,7 @@ input:focus {
 
 .wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;

@@ -2,14 +2,15 @@ import Header from "./components/header/Header";
 import Form from "./components/Form/Form";
 import Input from "./components/Input/Input";
 import Button from "./components/Button/Button";
+import Menu from "./components/Menu/Menu";
 import "./App.css";
 
 function App() {
   return (
-    <>
-      <div className="wrapper">
-        <Header />
-        <main className="content">
+    <div className="container">
+      <Header />
+      <main className="content">
+        <div className="wrapper">
           <h1 className="title">
             The best pizza.
             <br />
@@ -24,9 +25,10 @@ function App() {
             <Input type="text" placeholder="Your full name" />
             <Button>Login</Button>
           </Form>
-        </main>
-      </div>
-    </>
+        </div>
+        <Menu />
+      </main>
+    </div>
   );
 }
 
