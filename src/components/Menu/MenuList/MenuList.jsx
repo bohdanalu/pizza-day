@@ -9,6 +9,7 @@ const MenuList = () => {
         <MenuItem
           menuItem={pizzaItem}
           key={pizzaItem.id}
+          id={pizzaItem.id}
           img={pizzaItem.imageUrl}
           title={pizzaItem.name}
           ingredients={pizzaItem.ingredients}
