@@ -1,11 +1,7 @@
 import MenuItem from "../MenuItem/MenuItem";
 import styles from "./MenuList.module.css";
 
-const MenuList = ({ menuList, loading }) => {
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+const MenuList = ({ menuList }) => {
   if (!menuList) {
     return <div>Menu not found</div>;
   }

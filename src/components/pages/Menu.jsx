@@ -1,15 +1,14 @@
-import MenuList from "./MenuList/MenuList";
+import MenuList from "../Menu/MenuList/MenuList";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../helpers/constants";
-import styles from "./Menu.module.css";
 
 const Menu = () => {
   const [menuList, setMenuList] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getDate = async () => {
+    const getData = async () => {
       try {
         const response = await fetch(API_URL);
         if (!response.ok) {
@@ -23,12 +22,23 @@ const Menu = () => {
         setLoading(false);
       }
     };
-    getDate();
+    getData();
   }, []);
+
   return (
-    <section className={styles.menu__section}>
-      <h2 className={styles.menu__title}>Menu</h2>
-      <MenuList menuList={menuList} loading={loading} />
+    <section style={{ padding: "30px 0" }}>
+      <h2
+        style={{
+          fontSize: "40px",
+          fontWeight: "bold",
+          textAlign: "center",
+          marginBottom: "30px",
+        }}
+      >
+        Menu
+      </h2>
+      {loading && <p>Loading..</p>}
+      {menuList.length > 0 && <MenuList menuList={menuList} />}
       {error && <div>Error: {error}</div>}
     </section>
   );

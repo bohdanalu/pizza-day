@@ -1,5 +1,9 @@
-const Form = ({ className, children }) => {
-  return <form className={className}>{children}</form>;
+const Form = ({ className, children, onSubmit }) => {
+  return (
+    <form className={className} onSubmit={onSubmit}>
+      {children}
+    </form>
+  );
 };
 
 export default Form;

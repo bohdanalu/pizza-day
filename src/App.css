@@ -45,24 +45,6 @@ input:focus {
   min-height: 100vh;
 }
 
-.logo {
-  text-decoration: none;
-  font-size: 20px;
-  color: rgb(68, 64, 60);
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgb(234, 179, 8);
-  padding: 15px 20px;
-}
-
 .content {
   text-align: center;
 }
@@ -82,4 +64,8 @@ input:focus {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+a.active {
+  text-decoration: underline;
 }
