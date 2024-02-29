@@ -54,6 +54,7 @@
   border-radius: 50%;
   border: transparent;
   background-color: rgb(193, 150, 19);
+  cursor: pointer;
 }
 
 .header__badge {

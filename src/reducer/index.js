@@ -13,11 +13,15 @@ export const reducer = (state, action) => {
         (item) => item.id === action.payload.id
       );
       if (isExistIndex === -1) {
+        const updatedCartItemsQty = [
+          ...state.cartItems,
+          { ...action.payload, qty: 1 },
+        ];
         return {
           ...state,
-          cartItems: [...state.cartItems, { ...action.payload, qty: 1 }],
+          cartItems: updatedCartItemsQty,
           totalItems: state.totalItems + 1,
-          totalPrice: state.totalPrice + action.payload.price,
+          totalPrice: calcTotalPrice(updatedCartItemsQty),
         };
       } else {
         const updatedCartItems = [...state.cartItems];
@@ -49,15 +53,22 @@ export const reducer = (state, action) => {
       };
 
     case "DECREMENT_ITEM":
-      const updatedCartItemsDecr = state.cartItems.map((item) => {
-        if (item.id === action.payload.id) {
-          return {
-            ...item,
-            qty: item.qty - 1,
-          };
-        }
-        return item;
-      });
+      const updatedCartItemsDecr = state.cartItems
+        .map((item) => {
+          if (item.id === action.payload.id) {
+            const updatedQty = item.qty - 1;
+            if (updatedQty === 0) {
+              return null;
+            } else {
+              return {
+                ...item,
+                qty: updatedQty,
+              };
+            }
+          }
+          return item;
+        })
+        .filter(Boolean); //delete all null
 
       return {
         ...state,
