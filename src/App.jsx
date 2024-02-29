@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
-import Hero from "./components/pages/Hero";
-import Menu from "./components/pages/Menu";
+import Hero from "./pages/Hero";
+import Menu from "./pages/Menu";
+import Cart from "./components/Cart/Cart";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
     </div>

@@ -1,12 +1,15 @@
-import Form from "../Form/Form";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
-import { useState } from "react";
+import Form from "../components/Form/Form";
+import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import ModalWindow from "../ModalWindow/ModalWindow";
+import { UserContext } from "../providers/UserProvider";
+import ModalWindow from "../components/ModalWindow/ModalWindow";
 
 const Hero = () => {
-  const [userName, setUserName] = useState("");
+  const { setUser } = useContext(UserContext);
+
+  const [inputName, setInputName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -17,15 +20,12 @@ const Hero = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(userName);
-    if (!userName) {
+    if (!inputName.trim()) {
       setIsOpen(true);
-    }
-    if (userName) {
+    } else {
+      setUser(inputName);
       navigate("/menu");
     }
-
-    setUserName("");
   };
 
   return (
@@ -44,16 +44,15 @@ const Hero = () => {
         <Input
           type="text"
           placeholder="Your full name"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
+          value={inputName}
+          onChange={(e) => setInputName(e.target.value)}
         />
         <Button type="submit">Login</Button>
       </Form>
       {isOpen && (
         <ModalWindow onClose={handleCloseModal}>
           <p>
-            👋 Зареєструйтеся, <br /> будь ласка, <br /> перш ніж перейти до
-            меню
+            👋 Please register <br /> before accessing the menu.
           </p>
         </ModalWindow>
       )}

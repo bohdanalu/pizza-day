@@ -8,17 +8,8 @@ const MenuList = ({ menuList }) => {
 
   return (
     <ul className={styles.pizza__list}>
-      {menuList.map((pizzaItem) => (
-        <MenuItem
-          menuItem={pizzaItem}
-          key={pizzaItem.id}
-          id={pizzaItem.id}
-          img={pizzaItem.imageUrl}
-          title={pizzaItem.name}
-          ingredients={pizzaItem.ingredients}
-          price={pizzaItem.unitPrice}
-          soldOut={pizzaItem.soldOut}
-        />
+      {menuList.map((item) => (
+        <MenuItem key={item.id} {...item} />
       ))}
     </ul>
   );

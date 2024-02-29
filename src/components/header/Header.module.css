@@ -22,12 +22,48 @@
 
 .header__menu {
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 
-.header__menu a {
+.header__menu a,
+.header__menu button {
   color: inherit;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
+  opacity: 0.7;
   text-decoration: none;
+}
+.header__wrap {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+.header__icon {
+  width: 24px;
+  height: 32px;
+}
+
+.header__cart {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: transparent;
+  background-color: rgb(193, 150, 19);
+}
+
+.header__badge {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+}
+
+.header__user {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 24px;
 }

@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ModalWindow.module.css";
 
 const ModalWindow = ({ onClose, children }) => {
@@ -7,7 +9,7 @@ const ModalWindow = ({ onClose, children }) => {
       <div className={styles.modal__background}></div>;
       <div className={styles.modal}>
         <span className={styles.modal__close} onClick={onClose}>
-          X
+          <FontAwesomeIcon icon={faCircleXmark} />
         </span>
         <div className={styles.modal__content}>{children}</div>
       </div>

@@ -1,6 +1,6 @@
-import MenuList from "../Menu/MenuList/MenuList";
 import { useEffect, useState } from "react";
-import { API_URL } from "../../helpers/constants";
+import MenuList from "../components/Menu/MenuList/MenuList";
+import { API_URL } from "../helpers/constants";
 
 const Menu = () => {
   const [menuList, setMenuList] = useState([]);
