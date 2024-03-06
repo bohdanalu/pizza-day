@@ -51,20 +51,21 @@
   border: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .pizza {
     width: 100%;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1200px) {
+@media screen and (min-width: 993px) {
   .pizza {
     width: 49%;
   }
 }
 
-@media screen and (min-width: 1201px) {
-  .pizza {
-    width: 32%;
+@media screen and (max-width: 600px) {
+  .pizza__actions {
+    flex-wrap: wrap;
+    gap: 10px;
   }
 }

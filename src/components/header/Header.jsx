@@ -38,10 +38,11 @@ const Header = () => {
         </ul>
       </nav>
 
-      <Form>
+      <Form className={styles.header__search}>
         <Input placeholder="Search for the order #" />
       </Form>
       <div className={styles.header__wrap}>
+        {user && <span className={styles.header__user}>{user}</span>}
         {state.cartItems.length > 0 && (
           <button className={styles.header__cart} onClick={handleDirect}>
             <FontAwesomeIcon
@@ -51,8 +52,6 @@ const Header = () => {
             <span className={styles.header__badge}>{state.totalItems}</span>
           </button>
         )}
-
-        {user && <span className={styles.header__user}>{user}</span>}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MenuList from "../components/Menu/MenuList/MenuList";
 import { API_URL } from "../helpers/constants";
+import styles from "../components/Menu/Menu.module.css";
 
 const Menu = () => {
   const [menuList, setMenuList] = useState([]);
@@ -26,7 +27,7 @@ const Menu = () => {
   }, []);
 
   return (
-    <section style={{ padding: "30px 0" }}>
+    <section className={styles.menu__section}>
       <h2
         style={{
           fontSize: "40px",

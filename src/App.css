@@ -74,3 +74,25 @@ a.active,
 button.active {
   opacity: 1;
 }
+
+.qty {
+  display: inline-block;
+  text-align: center;
+  width: 28px;
+}
+
+.btns {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .btns {
+    width: 100%;
+  }
+
+  .btns button:last-child {
+    margin-left: auto;
+  }
+}
