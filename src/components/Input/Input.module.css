@@ -1,0 +1,56 @@
+.input__label {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  text-align: left;
+  font-size: 20px;
+}
+
+.input__labelName {
+  max-width: 165px;
+  width: 100%;
+}
+
+.input__wrap {
+  flex-grow: 1;
+}
+
+.input__input {
+  width: 100%;
+  font-size: 18px;
+}
+
+.input__inputCheckbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.input__inputCheckbox + span {
+  position: relative;
+  display: inline-block;
+  padding: 18px 0;
+  padding-left: 80px;
+}
+
+.input__inputCheckbox + span::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(231 229 228);
+}
+
+.input__inputCheckbox:checked + span::after {
+  background-color: rgb(234, 179, 8);
+}
+
+.input__error {
+  position: absolute;
+  bottom: -20px;
+  font-size: 13px;
+  color: rgb(234, 84, 84);
+}

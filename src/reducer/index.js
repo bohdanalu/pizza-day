@@ -78,14 +78,9 @@ export const reducer = (state, action) => {
       };
 
     case "DELETE_ITEM":
-      const itemToDelete = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-
       const updatedCartItemsDel = state.cartItems.filter(
         (item) => item.id !== action.payload.id
       );
-      const deletedItemQty = itemToDelete.qty;
 
       return {
         ...state,
@@ -93,5 +88,16 @@ export const reducer = (state, action) => {
         totalItems: calcTotalItem(updatedCartItemsDel),
         totalPrice: calcTotalPrice(updatedCartItemsDel),
       };
+
+    case "CLEAR-CART":
+      return {
+        ...state,
+        cartItems: [],
+        totalItems: 0,
+        totalPrice: 0,
+      };
+
+    default:
+      return state;
   }
 };

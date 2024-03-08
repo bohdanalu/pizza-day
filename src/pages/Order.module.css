@@ -1,0 +1,24 @@
+.order__section {
+  padding-top: 120px;
+}
+
+.order__form {
+  max-width: 550px;
+  width: 100%;
+  margin: 50px auto 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.order__btn {
+  display: inline-block;
+  font-size: 24px;
+  padding: 18px;
+}
+
+@media screen and (max-width: 600px) {
+  .order__section {
+    padding-top: 150px;
+  }
+}

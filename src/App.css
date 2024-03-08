@@ -27,6 +27,10 @@ body {
   cursor: pointer;
 }
 
+.button--light {
+  background-color: rgb(245, 245, 245);
+}
+
 .button:hover {
   background-color: rgb(202, 156, 16);
 }

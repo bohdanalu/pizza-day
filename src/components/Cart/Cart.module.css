@@ -38,15 +38,17 @@
   margin-bottom: 30px;
 }
 
-.cart__total {
+.cart__total,
+.cart__bottom {
   max-width: 750px;
   width: 100%;
   padding: 18px;
   margin: 0 auto;
   text-align: left;
-  font-size: 36px;
+  font-size: 30px;
   background-color: rgb(246, 223, 162);
   border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
 .cart__backLink {

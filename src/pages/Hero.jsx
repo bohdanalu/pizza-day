@@ -3,13 +3,26 @@ import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import userSchema from "../userSchema";
 import { UserContext } from "../providers/UserProvider";
 import ModalWindow from "../components/ModalWindow/ModalWindow";
 
 const Hero = () => {
-  const { setUser } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
 
-  const [inputName, setInputName] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: "",
+    },
+    resolver: yupResolver(userSchema),
+  });
+
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -17,15 +30,18 @@ const Hero = () => {
     setIsOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const onSubmit = (data, e) => {
     e.preventDefault();
 
-    if (!inputName.trim()) {
-      setIsOpen(true);
+    if (data.firstName.trim()) {
+      setUser(data.firstName);
+      console.log(user);
     } else {
-      setUser(inputName);
-      navigate("/menu");
+      setIsOpen(true);
+      console.error("Please enter your name");
     }
+
+    navigate("/menu");
   };
 
   return (
@@ -40,12 +56,14 @@ const Hero = () => {
       <p className="sub-title">
         👋 Welcome! Please start by telling us your name:
       </p>
-      <Form className="login-form" onSubmit={handleSubmit}>
+      {/* onSubmit don't work */}
+      <Form className="login-form" onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="text"
           placeholder="Your full name"
-          value={inputName}
-          onChange={(e) => setInputName(e.target.value)}
+          name="firstName"
+          register={register}
+          errors={errors}
         />
         <Button type="submit">Login</Button>
       </Form>

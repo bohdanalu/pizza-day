@@ -37,12 +37,12 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      {user && <span className={styles.header__user}>{user}</span>}
 
       <Form className={styles.header__search}>
-        <Input placeholder="Search for the order #" />
+        <Input type="search" placeholder="Search for the order #" />
       </Form>
       <div className={styles.header__wrap}>
-        {user && <span className={styles.header__user}>{user}</span>}
         {state.cartItems.length > 0 && (
           <button className={styles.header__cart} onClick={handleDirect}>
             <FontAwesomeIcon

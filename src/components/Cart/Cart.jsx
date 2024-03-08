@@ -41,6 +41,12 @@ const Cart = () => {
     });
   };
 
+  const handleClearCart = () => {
+    dispatch({
+      type: "CLEAR-CART",
+    });
+  };
+
   return (
     <>
       {state.cartItems.length > 0 && (
@@ -97,6 +103,21 @@ const Cart = () => {
           <p className={styles.cart__total}>
             Total: <span>{state.totalPrice + " \u20AC"}</span>
           </p>
+          <div
+            className={styles.cart__bottom}
+            style={{ display: "flex", gap: "20px" }}
+          >
+            <Link
+              to="/order/new"
+              className="button button--light"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Order Pizzas
+            </Link>
+            <Button type="button" onClick={handleClearCart}>
+              Clear Cart
+            </Button>
+          </div>
         </div>
       )}
     </>
