@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import userSchema from "../userSchema";
+import { LoginSchema } from "../userSchema";
 import { UserContext } from "../providers/UserProvider";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
@@ -20,7 +20,7 @@ const Order = () => {
       phoneNumber: "",
       address: "",
     },
-    resolver: yupResolver(userSchema),
+    resolver: yupResolver(LoginSchema),
   });
 
   const onSubmit = (data) => console.log(data);

@@ -10,7 +10,7 @@ const Input = ({
   register,
 }) => {
   return (
-    <label className={styles.input__label} htmlFor={name}>
+    <label className={styles.input__label}>
       {label && <span className={styles.input__labelName}>{label}</span>}
       {type === "checkbox" ? (
         <>

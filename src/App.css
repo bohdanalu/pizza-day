@@ -91,6 +91,12 @@ button.active {
   align-items: center;
 }
 
+@media screen and (max-width: 425px) {
+  .login-form {
+flex-wrap: wrap; 
+gap: 30px;
+ }
+
 @media screen and (max-width: 600px) {
   .btns {
     width: 100%;

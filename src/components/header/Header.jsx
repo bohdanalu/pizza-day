@@ -2,8 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../providers/UserProvider";
 import { CartContext } from "../../providers/CartProvider";
 import Input from "../Input/Input";
-import Form from "../Form/Form";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,15 +11,6 @@ import styles from "./Header.module.css";
 const Header = () => {
   const { user } = useContext(UserContext);
   const { state } = useContext(CartContext);
-  const navigate = useNavigate();
-
-  const handleDirect = () => {
-    if (!user) {
-      navigate("/");
-    } else {
-      navigate("/cart");
-    }
-  };
 
   return (
     <div className={styles.header}>
@@ -39,18 +29,18 @@ const Header = () => {
       </nav>
       {user && <span className={styles.header__user}>{user}</span>}
 
-      <Form className={styles.header__search}>
+      <form className={styles.header__search}>
         <Input type="search" placeholder="Search for the order #" />
-      </Form>
+      </form>
       <div className={styles.header__wrap}>
         {state.cartItems.length > 0 && (
-          <button className={styles.header__cart} onClick={handleDirect}>
+          <Link className={styles.header__cart} to="/cart">
             <FontAwesomeIcon
               className={styles.header__icon}
               icon={faBasketShopping}
             />
             <span className={styles.header__badge}>{state.totalItems}</span>
-          </button>
+          </Link>
         )}
       </div>
     </div>

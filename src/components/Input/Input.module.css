@@ -1,7 +1,6 @@
 .input__label {
   position: relative;
   display: flex;
-  gap: 20px;
   align-items: center;
   text-align: left;
   font-size: 20px;
