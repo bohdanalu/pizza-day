@@ -1,14 +1,12 @@
+import { useController } from "react-hook-form";
 import styles from "./Input.module.css";
 
-const Input = ({
-  errors,
-  type,
-  name,
-  label,
-  placeholder,
-  append,
-  register,
-}) => {
+const Input = ({ type, name, label, placeholder, append, control }) => {
+  const {
+    field,
+    fieldState: { error },
+  } = useController({ name, control });
+
   return (
     <label className={styles.input__label}>
       {label && <span className={styles.input__labelName}>{label}</span>}
@@ -23,11 +21,10 @@ const Input = ({
             className={styles.input__input}
             type={type}
             placeholder={placeholder}
-            // {...register(name)} - зустрічала багато в коді, а в мене не працює. Why?
-            {...(register && register(name))}
+            {...field}
           />
-          {errors && errors[name] && (
-            <p className={styles.input__error}>{`* ${errors[name].message}`}</p>
+          {error && (
+            <p className={styles.input__error}>{`* ${error.message}`}</p>
           )}
         </div>
       )}

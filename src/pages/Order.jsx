@@ -10,11 +10,7 @@ import styles from "./Order.module.css";
 const Order = () => {
   const { user } = useContext(UserContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       firstName: user || "",
       phoneNumber: "",
@@ -24,6 +20,7 @@ const Order = () => {
   });
 
   const onSubmit = (data) => console.log(data);
+  console.log(control);
 
   return (
     <div className={styles.order__section}>
@@ -33,23 +30,15 @@ const Order = () => {
           type="text"
           name="firstName"
           label="First Name"
-          register={register}
-          errors={errors}
+          control={control}
         />
         <Input
-          register={register}
-          errors={errors}
           type="tel"
           name="phoneNumber"
           label="Phone Number"
+          control={control}
         />
-        <Input
-          register={register}
-          errors={errors}
-          type="text"
-          name="address"
-          label="Address"
-        />
+        <Input type="text" name="address" label="Address" control={control} />
         <Input append="Do you want to prioritize your order?" type="checkbox" />
         <Button type="submit">
           <span className={styles.order__btn}>Order now for</span>

@@ -1,6 +1,6 @@
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,11 +10,7 @@ import { UserContext } from "../providers/UserProvider";
 const Hero = () => {
   const { setUser } = useContext(UserContext);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       firstName: "",
     },
@@ -47,8 +43,7 @@ const Hero = () => {
           type="text"
           placeholder="Your full name"
           name="firstName"
-          register={register}
-          errors={errors}
+          control={control}
         />
         <Button type="submit">Login</Button>
       </form>
