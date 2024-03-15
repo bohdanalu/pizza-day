@@ -1,23 +1,28 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
-import Hero from "./pages/Hero";
-import Menu from "./pages/Menu";
-import Cart from "./components/Cart/Cart";
-// import Order from "./pages/Order";
-
+import { lazy, Suspense } from "react";
 import "./App.css";
+
+const Home = lazy(() => import("./pages/Hero"));
+const Menu = lazy(() => import("./pages/Menu"));
+const Cart = lazy(() => import("./components/Cart/Cart"));
+const LoginForm = lazy(() => import("./pages/LoginForm/LoginForm"));
+const Order = lazy(() => import("./pages/Order/Order"));
 
 function App() {
   return (
     <div className="container">
       <Header />
       <main className="content">
-        <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/cart" element={<Cart />} />
-          {/* <Route path="/order/new" element={<Order />} /> */}
-        </Routes>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/order/new" element={<LoginForm />} />
+            <Route path="/order/:id" element={<Order />} />
+          </Routes>
+        </Suspense>
       </main>
     </div>
   );
