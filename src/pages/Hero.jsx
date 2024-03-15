@@ -1,14 +1,14 @@
-import Input from "../components/Input/Input";
-import Button from "../components/Button/Button";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userNameSchema } from "../userSchema";
 import { UserContext } from "../providers/UserProvider";
+import Input from "../components/Input/Input";
+import Button from "../components/Button/Button";
 
 const Hero = () => {
-  const { setUser } = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
@@ -21,7 +21,8 @@ const Hero = () => {
 
   const onSubmit = (data) => {
     if (data.firstName.trim() !== "") {
-      setUser(data.firstName);
+      localStorage.setItem("user", data.firstName);
+      updateUser(data.firstName);
       navigate("/menu");
     }
   };
