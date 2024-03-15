@@ -2,6 +2,9 @@ import { useController } from "react-hook-form";
 import styles from "./Input.module.css";
 
 const Input = ({ type, name, label, placeholder, append, control }) => {
+  if (!control) {
+    return null;
+  }
   const {
     field,
     fieldState: { error },

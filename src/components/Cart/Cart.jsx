@@ -59,7 +59,8 @@ const Cart = () => {
             Back to Menu
           </Link>
           <h2 className={styles.cart__user}>
-            Your order, <span style={{ fontStyle: "italic" }}>{user}</span>
+            Your order{" "}
+            <span style={{ fontStyle: "italic" }}>{user && `, ${user}`}</span>
           </h2>
           {state.cartItems.length > 0 &&
             state.cartItems.map((item) => {

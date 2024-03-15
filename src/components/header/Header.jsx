@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserProvider";
 import { CartContext } from "../../providers/CartProvider";
-import Input from "../Input/Input";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
@@ -30,7 +29,7 @@ const Header = () => {
       {user && <span className={styles.header__user}>{user}</span>}
 
       <form className={styles.header__search}>
-        <Input type="search" placeholder="Search for the order #" />
+        <input type="search" placeholder="Search for the order #" />
       </form>
       <div className={styles.header__wrap}>
         {state.cartItems.length > 0 && (
