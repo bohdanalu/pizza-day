@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import MenuList from "../components/Menu/MenuList/MenuList";
-import { API_URL } from "../helpers/constants";
+import { API_URL_MENU } from "../helpers/constants";
 import styles from "../components/Menu/Menu.module.css";
 
 const Menu = () => {
@@ -11,7 +11,7 @@ const Menu = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch(API_URL_MENU);
         if (!response.ok) {
           throw new Error("Failed to fetch menu");
         }

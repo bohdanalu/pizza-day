@@ -15,7 +15,12 @@ const Input = ({ type, name, label, placeholder, append, control }) => {
       {label && <span className={styles.input__labelName}>{label}</span>}
       {type === "checkbox" ? (
         <>
-          <input className={styles.input__inputCheckbox} type={type} />
+          <input
+            className={styles.input__inputCheckbox}
+            type={type}
+            checked={field?.value || false}
+            onChange={(e) => field.onChange(e.target.checked)}
+          />
           {append && <span className={styles.input__append}>{append}</span>}
         </>
       ) : (

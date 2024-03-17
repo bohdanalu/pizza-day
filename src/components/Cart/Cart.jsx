@@ -1,17 +1,23 @@
-import React, { useContext, useEffect } from "react";
-import { CartContext } from "../../providers/CartProvider";
-import { UserContext } from "../../providers/UserProvider";
+import React, { useEffect } from "react";
 import { faTrashCan, faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 import Button from "../Button/Button";
 import styles from "./Cart.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearCart,
+  decrement,
+  increment,
+  deleteItem,
+  calcTotalPrice,
+} from "../../redux/slice/cartSlice";
 
 const Cart = () => {
-  const { state, dispatch } = useContext(CartContext);
-  const { user } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.userName.name);
+  const state = useSelector((store) => store.cart);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,31 +26,24 @@ const Cart = () => {
     }
   }, [state.cartItems]);
 
+  useEffect(() => {
+    dispatch(calcTotalPrice());
+  }, [state.cartItems, dispatch]);
+
   const handleIncrementItem = (item) => {
-    dispatch({
-      type: "INCREMENT_ITEM",
-      payload: item,
-    });
+    dispatch(increment(item));
   };
 
   const handleDecrementItem = (item) => {
-    dispatch({
-      type: "DECREMENT_ITEM",
-      payload: item,
-    });
+    dispatch(decrement(item));
   };
 
   const handleDeleteItem = (item) => {
-    dispatch({
-      type: "DELETE_ITEM",
-      payload: item,
-    });
+    dispatch(deleteItem(item));
   };
 
   const handleClearCart = () => {
-    dispatch({
-      type: "CLEAR-CART",
-    });
+    dispatch(clearCart());
   };
 
   return (

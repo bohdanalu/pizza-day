@@ -1,15 +1,20 @@
-import { useContext } from "react";
-import { UserContext } from "../../providers/UserProvider";
-import { CartContext } from "../../providers/CartProvider";
+import { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
-
+import { useDispatch, useSelector } from "react-redux";
+import { calcTotalItems } from "../../redux/slice/cartSlice";
 import styles from "./Header.module.css";
 
 const Header = () => {
-  const { user } = useContext(UserContext);
-  const { state } = useContext(CartContext);
+  const user = useSelector((store) => store.userName.name);
+  const state = useSelector((store) => store.cart);
+  const totalItems = useSelector((store) => store.cart.totalItems);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(calcTotalItems());
+  }, [state.cartItems, dispatch]);
 
   return (
     <div className={styles.header}>
@@ -38,7 +43,7 @@ const Header = () => {
               className={styles.header__icon}
               icon={faBasketShopping}
             />
-            <span className={styles.header__badge}>{state.totalItems}</span>
+            <span className={styles.header__badge}>{totalItems}</span>
           </Link>
         )}
       </div>

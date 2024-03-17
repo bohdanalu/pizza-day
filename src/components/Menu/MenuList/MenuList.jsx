@@ -9,7 +9,7 @@ const MenuList = ({ menuList }) => {
   return (
     <ul className={styles.pizza__list}>
       {menuList.map((item) => (
-        <MenuItem key={item.id} {...item} />
+        <MenuItem key={item.id} item={item} />
       ))}
     </ul>
   );

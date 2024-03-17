@@ -1,26 +1,27 @@
-import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginSchema } from "../../userSchema";
-import { UserContext } from "../../providers/UserProvider";
+import { useSelector } from "react-redux";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import styles from "./LoginForm.module.css";
 
 const LoginForm = () => {
-  const { user } = useContext(UserContext);
+  const user = useSelector((store) => store.userName.name);
 
   const { control, handleSubmit } = useForm({
     defaultValues: {
       firstName: user || "",
       phoneNumber: "",
       address: "",
+      priority: false,
     },
     resolver: yupResolver(LoginSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
-  console.log(control);
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
 
   return (
     <div className={styles.login__section}>
@@ -39,10 +40,14 @@ const LoginForm = () => {
           control={control}
         />
         <Input type="text" name="address" label="Address" control={control} />
-        <Input append="Do you want to prioritize your login?" type="checkbox" />
+        <Input
+          append="Do you want to prioritize your login?"
+          name="priority"
+          type="checkbox"
+          control={control}
+        />
         <Button type="submit">
           <span className={styles.login__btn}>Order now for</span>
-          <span className={styles.login__btn}></span>
         </Button>
       </form>
     </div>

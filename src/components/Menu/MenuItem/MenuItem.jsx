@@ -1,37 +1,36 @@
-import { useContext } from "react";
-import { CartContext } from "../../../providers/CartProvider";
 import Button from "../../Button/Button";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addItem,
+  increment,
+  decrement,
+  deleteItem,
+} from "../../../redux/slice/cartSlice";
 import styles from "./MenuItem.module.css";
 
-const MenuItem = ({ imageUrl, name, unitPrice, soldOut, ingredients, id }) => {
-  const { state, dispatch } = useContext(CartContext);
+const MenuItem = ({ item }) => {
+  const { imageUrl, name, unitPrice, soldOut, ingredients, id } = item;
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  const dispatch = useDispatch();
 
   const handleAddItem = () => {
-    dispatch({ type: "ADD_ITEM", payload: { name, unitPrice, id, imageUrl } });
+    dispatch(addItem(item));
+    console.log(item);
   };
 
   const handleDeleteItem = () => {
-    dispatch({
-      type: "DELETE_ITEM",
-      payload: { id },
-    });
+    dispatch(deleteItem(item));
   };
 
   const handleIncrementItem = () => {
-    dispatch({
-      type: "INCREMENT_ITEM",
-      payload: { id },
-    });
+    dispatch(increment(item));
   };
 
   const handleDecrementItem = () => {
-    dispatch({
-      type: "DECREMENT_ITEM",
-      payload: { id },
-    });
+    dispatch(decrement(item));
   };
 
-  const cartItem = state.cartItems.find((item) => item.id === id);
+  const cartItem = cartItems.find((item) => item.id === id);
   const cartItemQty = cartItem ? cartItem.qty : 0;
 
   return (
