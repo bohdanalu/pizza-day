@@ -91,11 +91,16 @@ button.active {
   align-items: center;
 }
 
+.section {
+  padding-top: 120px;
+}
+
 @media screen and (max-width: 425px) {
   .login-form {
-flex-wrap: wrap; 
-gap: 30px;
- }
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .btns {
@@ -104,5 +109,9 @@ gap: 30px;
 
   .btns button:last-child {
     margin-left: auto;
+  }
+
+  .section {
+    padding-top: 150px;
   }
 }

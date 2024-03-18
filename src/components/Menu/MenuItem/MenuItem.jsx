@@ -15,7 +15,6 @@ const MenuItem = ({ item }) => {
 
   const handleAddItem = () => {
     dispatch(addItem(item));
-    console.log(item);
   };
 
   const handleDeleteItem = () => {

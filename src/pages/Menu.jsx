@@ -1,33 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MenuList from "../components/Menu/MenuList/MenuList";
-import { API_URL_MENU } from "../helpers/constants";
 import styles from "../components/Menu/Menu.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllItemsMenu } from "../redux/slice/menuSlice";
 
 const Menu = () => {
-  const [menuList, setMenuList] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const state = useSelector((store) => store.menu);
+  const { menuItems, isLoading, error } = state;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch(API_URL_MENU);
-        if (!response.ok) {
-          throw new Error("Failed to fetch menu");
-        }
-        const { data } = await response.json();
-        setMenuList(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
+    dispatch(fetchAllItemsMenu());
+  }, [dispatch]);
 
   return (
-    <section className={styles.menu__section}>
+    <section className="section">
       <h2
         style={{
           fontSize: "40px",
@@ -38,8 +25,8 @@ const Menu = () => {
       >
         Menu
       </h2>
-      {loading && <p>Loading..</p>}
-      {menuList.length > 0 && <MenuList menuList={menuList} />}
+      {isLoading && <p>Loading..</p>}
+      {menuItems.length > 0 && <MenuList menuList={menuItems} />}
       {error && <div>Error: {error}</div>}
     </section>
   );
