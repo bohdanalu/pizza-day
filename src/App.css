@@ -1,5 +1,4 @@
 body {
-  position: relative;
   font-family: "Roboto Mono", monospace;
   font-size: 16px;
   line-height: 1.2;
@@ -7,7 +6,6 @@ body {
 }
 
 .container {
-  position: relative;
   max-width: 1920px;
   width: 100%;
   padding: 0 15px;

@@ -1,6 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePriority } from "../../redux/slice/orderSlice";
+import { changePriority, resetOrder } from "../../redux/slice/orderSlice";
 import Button from "../../components/Button/Button";
 import styles from "./Order.module.css";
 
@@ -31,6 +31,12 @@ const Order = () => {
   const formattedDate = date.toLocaleString("en-US", options);
 
   const timeDiffInMin = Math.floor((date - new Date(createdAt)) / (1000 * 60));
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetOrder());
+    };
+  }, [dispatch]);
 
   const handleChangePriority = useCallback(async () => {
     dispatch(changePriority({ orderId, priority: true }));

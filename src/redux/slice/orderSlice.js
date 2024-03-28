@@ -71,7 +71,6 @@ export const searchOrder = createAsyncThunk(
       });
       const data = await response.json();
       if (response.ok) {
-        console.log(data);
         return data;
       } else {
         return rejectWithValue({ error: "Failed to change priority" });
@@ -85,7 +84,15 @@ export const searchOrder = createAsyncThunk(
 const orderSlice = createSlice({
   name: "order",
   initialState,
-  reducers: {},
+  reducers: {
+    resetOrder: (state) => {
+      state.orderId = null;
+      state.orderData = null;
+      state.status = "";
+      state.error = null;
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // submitOrder
@@ -155,4 +162,5 @@ const orderSlice = createSlice({
   },
 });
 
+export const { resetOrder } = orderSlice.actions;
 export default orderSlice.reducer;

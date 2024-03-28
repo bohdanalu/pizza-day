@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { calcTotalItems } from "../../redux/slice/cartSlice";
 import styles from "./Header.module.css";
-import { searchOrder } from "../../redux/slice/orderSlice";
+import { resetOrder, searchOrder } from "../../redux/slice/orderSlice";
 import ModalWindow from "../ModalWindow/ModalWindow";
 
 const Header = () => {
@@ -36,7 +36,6 @@ const Header = () => {
       const orderData = actionResult.payload.data;
       navigate(`/order/${orderData.id}`);
     } else {
-      console.log("Order not found");
       setErrorMessage("Order not found 🙈");
       setIsOpen(true);
     }
@@ -46,6 +45,7 @@ const Header = () => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
+    dispatch(resetOrder());
   };
 
   return (

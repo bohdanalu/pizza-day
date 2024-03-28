@@ -30,6 +30,8 @@
 .order__delivery {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   background-color: rgb(224, 222, 210);
   border-radius: 8px;
   padding: 10px 8px;
@@ -62,7 +64,8 @@
 }
 
 .order__bottom p:last-child {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
 }
 
 .order__buttonContainer {

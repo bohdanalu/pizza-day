@@ -112,22 +112,18 @@
 }
 
 @media screen and (max-width: 768px) {
-  .header__nav {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 600px) {
   .header {
     flex-wrap: wrap;
     gap: 20px;
   }
 
+  .header__menu li:first-child {
+    display: none;
+  }
+
   .header__search {
     width: 100%;
-    order: 4;
-    justify-self: center;
-    flex-grow: 1;
+    order: 3;
   }
 
   .header__search input {
