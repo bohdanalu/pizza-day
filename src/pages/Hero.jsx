@@ -1,17 +1,13 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { userNameSchema } from "../userSchema";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUserName } from "../redux/slice/userSlice";
-// import { UserContext } from "../providers/UserProvider";
 import Input from "../components/Input/Input";
 import Button from "../components/Button/Button";
 
 const Hero = () => {
-  // const { updateUser } = useContext(UserContext);
-  // const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const { control, handleSubmit } = useForm({

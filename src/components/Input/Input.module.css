@@ -1,5 +1,4 @@
 .input__label {
-  position: relative;
   display: flex;
   align-items: center;
   text-align: left;
@@ -12,6 +11,8 @@
 }
 
 .input__wrap {
+  position: relative;
+  z-index: 0;
   flex-grow: 1;
 }
 

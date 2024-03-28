@@ -9,6 +9,7 @@ import { updateUserName } from "../../redux/slice/userSlice";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import styles from "./LoginForm.module.css";
+import { clearCart } from "../../redux/slice/cartSlice";
 
 const LoginForm = () => {
   const user = useSelector((store) => store.userName.name);
@@ -49,6 +50,7 @@ const LoginForm = () => {
 
       dispatch(submitOrder(orderData));
       dispatch(updateUserName(data.firstName));
+      dispatch(clearCart());
     },
     [cartState, dispatch]
   );
