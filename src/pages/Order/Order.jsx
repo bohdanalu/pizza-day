@@ -51,7 +51,11 @@ const Order = () => {
             <span className={styles.order__prepare}>Preparing order</span>
           </div>
           <div className={styles.order__delivery}>
-            <p>{`Only ${timeDiffInMin} minutes left 😋`}</p>
+            {timeDiffInMin > 0 ? (
+              <p>{`Only ${timeDiffInMin} minutes left 😋`}</p>
+            ) : (
+              ""
+            )}
             <p>
               (Estimated delivery: <span>{formattedDate}</span>)
             </p>
